@@ -77,15 +77,17 @@ export default {
 
   methods: {
     store() {
-      if (this.password === this.password_confirmation) {
-        axios.post("/api/register", this.user).then(() => {
-          this.$router.push("/login");
-        });
-      } else {
+      if (this.password !== this.password_confirmation) {
         this.password = "";
         this.password_confrim = "";
         return alert("Passwords do not match");
       }
+      axios
+        .post("/api/register", this.user)
+        .then(() => {
+          this.$router.push("/login");
+        })
+        .catch((error) => console.log(error));
     },
   },
 };

@@ -32,7 +32,7 @@
           <div class="card-footer">
             <div>
               <span class="text-muted">Don't have an account? </span>
-              <router-link :to="{ name: 'register'}">Register</router-link>
+              <router-link :to="{ name: 'register' }">Register</router-link>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default {
   methods: {
     loginEnter() {
       axios.post("/api/login", this.user).then(() => {
-        this.$router.push("/alluser");
+        this.$router.push("/post");
       });
       localStorage.setItem("email", this.user.email);
     },

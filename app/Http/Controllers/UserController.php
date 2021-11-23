@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 
 class UserController extends Controller
-{
+{   
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $users = User::all();
@@ -19,13 +24,24 @@ class UserController extends Controller
         
         
     }
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $userData = User::find($id);
         return response()->json($userData);
     }
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update($id, UserUpdateRequest $request)
     {   
         $user = User::find($id);
@@ -33,7 +49,12 @@ class UserController extends Controller
 
         return $user;
     }
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(User $user)
     {
         $user->delete();

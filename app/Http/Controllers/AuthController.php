@@ -11,21 +11,32 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {   
-    public function index()
+    public function index(Request $request)
     {   
-        return Auth::user();
+        return User::where('email', trim($request->email))->first();
     }
+    /**
+     * Create a new user instance
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
     public function register(Request $request)
     {
         $user = User::create([
             'name' => $request['name'],
             'password' => Hash::make($request['password']),
-            'email' => $request['email']
+            'email' => $request['email'],
+            'role_id' => 2,
         ]);
         $user->save();
         return $user;
     }
-
+    /**
+     * Create a new controller to login this system.
+     *
+     * @return void
+     */
     public function login(Request $request)
     {
         $user = User::where('email', $request['email'])->first();
@@ -43,7 +54,12 @@ class AuthController extends Controller
             'message' => $token
         ])->withCookie($cookie);
     }
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function logout()
     {   
         $cookie = Cookie::forget('jwt');
@@ -52,7 +68,12 @@ class AuthController extends Controller
             'message' => 'Success logout'
         ])->withCookie($cookie);
     }
-
+    /**
+     * Create a new user profile controller.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
     public function profile(Request $request) 
     {
         return User::where('email', trim($request->email))->first();

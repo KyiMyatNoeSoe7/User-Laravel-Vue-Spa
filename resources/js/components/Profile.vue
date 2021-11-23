@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5 mb-5">
+  <div class="container mt-5 mb-5 profile">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
@@ -8,10 +8,10 @@
             <div class="col-md-12">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item py-4">
-                  <span class="text-primary">Name: </span>{{ user.name }}
+                  <span class="text-primary">Name: </span>{{ name }}
                 </li>
                 <li class="list-group-item py-4">
-                  <span class="text-primary">Email: </span>{{ user.email }}
+                  <span class="text-primary">Email: </span>{{ email }}
                 </li>
               </ul>
             </div>
@@ -26,14 +26,13 @@
 
 <script>
 export default {
+  name: "profile",
   data() {
     return {
-        user: {
-          name: "",
-          email: "",
-        },
-        currentUser: null,
-    }
+      name: null,
+      email: null,
+      currentUser: null,
+    };
   },
   created() {
     this.currentUser = localStorage.getItem("email");
@@ -46,10 +45,13 @@ export default {
     view() {
       axios
         .post("/api/profile", { email: this.currentUser })
-        .then(function (response) {
-          this.name = response.data.name;
-          this.email = response.data.email;
-        });
+        .then((response) => {
+          if (response.data) {
+            this.name = response.data.name;
+            this.email = response.data.email;
+          }
+        })
+        .catch((error) => console.log(error));
     },
   },
 };

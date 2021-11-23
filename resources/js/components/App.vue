@@ -1,37 +1,26 @@
 <template>
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <a class="navbar-brand" href="#">User</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand" href="#">User-Post-Spa</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+        <ul class="navbar-nav nav-tabs">
+          <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'home' }"
               >Home
             </router-link>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'about' }"
               >About
             </router-link>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'login' }" v-if="!auth"
               >Login
             </router-link>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <router-link
               class="nav-link"
               :to="{ name: 'register' }"
@@ -40,47 +29,52 @@
             </router-link>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown" v-if="auth">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Me
-            </a>
-            <div
-              class="dropdown-menu dropdown-menu-right"
-              aria-labelledby="navbarDropdown"
-            >
-              <router-link
-                class="dropdown-item"
-                :to="{ name: 'alluser' }"
+
+        <ul class="navbar-nav nav-tabs" v-if="auth">
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'post' }"
+              >Post
+            </router-link>
+          </li>
+        </ul>
+        {{ "role".role_id }}
+        <ul class="navbar-nav nav-tabs" v-if="role_id == 1">
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'admin' }"
+              >Admin
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'contactList' }"
+              >Contact List
+            </router-link>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav nav-tabs ml-5 ml-auto justify-content-end">
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'contactus' }"
+              >Contact Us
+            </router-link>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav nav-tabs justify-content-end" v-if="auth">
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'profile' }"
+              >Profile
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <form @submit.prevent="logout">
+              <button
+                class="btn btn-sm btn-secondary mt-2"
+                type="submit"
                 v-if="auth"
-                >All User
-              </router-link>
-              <div class="dropdown-divider"></div>
-              <router-link
-                class="dropdown-item"
-                :to="{ name: 'profile' }"
-                v-if="auth"
-                >Profile
-              </router-link>
-              <div class="dropdown-divider"></div>
-              <form @submit.prevent="logout">
-                <button
-                  class="dropdown-item btn btn-secondary"
-                  type="submit"
-                  v-if="auth"
-                >
-                  Logout
-                </button>
-              </form>
-            </div>
+              >
+                Logout
+              </button>
+            </form>
           </li>
         </ul>
       </div>
@@ -94,26 +88,30 @@
 export default {
   data() {
     return {
-      name: "",
+      name: null,
       auth: false,
+      role_id: null,
+      currentUser: null,
     };
   },
   methods: {
     view() {
-      axios.get("/api/users").then((response) => {
+      axios.post("/api/users", { email: this.currentUser }).then((response) => {
         this.name = response.data.name;
+        this.role_id = response.data.role_id;
         this.auth = true;
       });
     },
     logout() {
       axios.post("/api/logout").then(() => {
-        this.$router.push("/");
+        this.$router.push("/about");
         this.auth = false;
         localStorage.clear();
       });
     },
   },
   created() {
+    this.currentUser = localStorage.getItem("email");
     this.view();
   },
 };
