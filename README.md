@@ -4,7 +4,7 @@
 Also,I use Vue.js version 2 and Axios for making web requests and handling responses. Vue and Axios are managed by npm, while the rest of the dependencies are managed by composer.
 
 ## Demo Link 
-https://github.com/KyiMyatNoeSoe7/User-Post-Spa.git
+https://github.com/KyiMyatNoeSoe7/User-Laravel-Vue-Spa.git
 
 Install all the dependencies using composer
 ```
