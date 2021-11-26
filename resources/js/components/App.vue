@@ -165,7 +165,7 @@ export default {
     },
     logout() {
       axios.post("/api/logout").then(() => {
-        this.$router.push("/about");
+        this.$router.push("/");
         this.auth = false;
         localStorage.clear();
       });

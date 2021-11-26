@@ -1,6 +1,5 @@
 <template>
   <div class="container my-3">
-
     <div class="row mt-1">
       <div class="col-md-6">
         <h4 class="ml-2">User-List</h4>
@@ -20,7 +19,7 @@
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.role_id }}</td>
-              <td>{{ '********' }}</td>
+              <td>{{ "********" }}</td>
             </tr>
           </tbody>
         </table>

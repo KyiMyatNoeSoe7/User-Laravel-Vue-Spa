@@ -7,8 +7,6 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Validator;
-
 class PostController extends Controller
 {   
     /**
@@ -119,11 +117,14 @@ class PostController extends Controller
                     if ($key == 1) {     
                         continue;
                     }
-                   
-                    $insertData = array(
-                        "name"=>$importData[1],
-                        "description"=>$importData[2]);
-                    DB::table('posts')->insert($insertData);
+                    $postExist = Post::where('name', $importData[1])->exists();
+
+                    if(! $postExist) {
+                        $insertData = array(
+                            "name"=>$importData[1],
+                            "description"=>$importData[2]);
+                        DB::table('posts')->insert($insertData);
+                    }
                   }
             }
             fclose ( $handle );

@@ -2159,7 +2159,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2392,7 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.post("/api/logout").then(function () {
-        _this2.$router.push("/about");
+        _this2.$router.push("/");
 
         _this2.auth = false;
         localStorage.clear();
