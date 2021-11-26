@@ -18,7 +18,7 @@
               <div class="form-group">
                 <label>Password:</label>
                 <input
-                  type="text"
+                  :type="type"
                   v-model="user.password"
                   class="form-control"
                   placeholder="Enter your password"
@@ -49,6 +49,7 @@ export default {
         email: "",
         password: "",
       },
+      type: 'password',
     };
   },
 

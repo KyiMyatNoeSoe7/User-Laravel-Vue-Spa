@@ -27,7 +27,7 @@
               <div class="form-group">
                 <label>Password:</label>
                 <input
-                  type="text"
+                  :type="type"
                   class="form-control"
                   v-model="user.password"
                   placeholder="Enter your password"
@@ -36,10 +36,11 @@
               <div class="form-group">
                 <label>Confirm Password:</label>
                 <input
-                  type="text"
+                  :type="type"
                   class="form-control"
                   v-model="user.password_confirm"
                   placeholder="Enter your password"
+                  @click.right.prevent @keydown="keydown" @copy.prevent @paste.prevent
                 />
               </div>
               <button type="submit" class="btn btn-primary btn-block">
@@ -71,7 +72,10 @@ export default {
         email: "",
         password: "",
         password_confrim: "",
+        role_id: 2,
       },
+      type: 'password',
+      
     };
   },
 
@@ -89,6 +93,10 @@ export default {
         })
         .catch((error) => console.log(error));
     },
-  },
+    keydown: function(e) {
+      console.log(e)
+    },
+  }
+    
 };
 </script>

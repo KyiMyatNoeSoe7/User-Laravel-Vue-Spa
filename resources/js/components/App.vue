@@ -1,28 +1,38 @@
 <template>
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <a class="navbar-brand" href="#">User-Post-Spa</a>
+    <nav
+      class="navbar navbar-expand-lg navbar-light border-bottom"
+      style="background-color: white"
+    >
+      <a class="navbar-brand font-weight-bold" href="#">User-Post-Spa</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav nav-tabs">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'home' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'home' }"
               >Home
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'about' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'about' }"
               >About
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'login' }" v-if="!auth"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'login' }"
+              v-if="!auth"
               >Login
             </router-link>
           </li>
           <li class="nav-item">
             <router-link
-              class="nav-link"
+              class="nav-link font-weight-bold"
               :to="{ name: 'register' }"
               v-if="!auth"
               >Register
@@ -32,7 +42,9 @@
 
         <ul class="navbar-nav nav-tabs" v-if="auth">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'post' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'post' }"
               >Post
             </router-link>
           </li>
@@ -40,12 +52,16 @@
         {{ "role".role_id }}
         <ul class="navbar-nav nav-tabs" v-if="role_id == 1">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'admin' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'admin' }"
               >Admin
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'contactList' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'contactList' }"
               >Contact List
             </router-link>
           </li>
@@ -53,7 +69,9 @@
 
         <ul class="navbar-nav nav-tabs ml-5 ml-auto justify-content-end">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'contactus' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'contactus' }"
               >Contact Us
             </router-link>
           </li>
@@ -61,7 +79,9 @@
 
         <ul class="navbar-nav nav-tabs justify-content-end" v-if="auth">
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'profile' }"
+            <router-link
+              class="nav-link font-weight-bold"
+              :to="{ name: 'profile' }"
               >Profile
             </router-link>
           </li>
@@ -81,6 +101,47 @@
     </nav>
 
     <router-view> </router-view>
+
+    <footer class="page-footer font-small" style="background-color: white">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <h6 class="font-weight-bold text-uppercase mt-3 mb-1">
+              User-Post-Vue
+            </h6>
+            <ul style="font-size: 15px" class="list-unstyled">
+              <li>
+                <router-link class="nav-link" :to="{ name: 'about' }"
+                  >About us
+                </router-link>
+              </li>
+              <li>
+                <router-link class="nav-link" :to="{ name: 'contactus' }"
+                  >Contact Us
+                </router-link>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col">
+            <h6 class="font-weight-bold text-uppercase mt-3 mb-1">CONTACT</h6>
+            <ul class="list-unstyled" style="font-size: 15px">
+              <li>
+                <p>No.111,Botahtaung <span>Township,Yangon</span></p>
+              </li>
+              <li>
+                <p>superadmin@gmail.com</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-copyright text-center py-2">
+        © 2021 Copyright:
+        <a href="#" class="">superadmin@gmail.com</a>
+      </div>
+    </footer>
   </div>
 </template>
 

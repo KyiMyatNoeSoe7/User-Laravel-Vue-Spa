@@ -18,10 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('role_id')->nullable()->onDelete('cascade');
+            $table->integer('role_id')->default(2);
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable()->default(now());
+            $table->dateTime('updated_at')->nullable()->default(now());
         });
     }
 

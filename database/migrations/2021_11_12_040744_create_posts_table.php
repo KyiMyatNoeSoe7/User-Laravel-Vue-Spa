@@ -17,7 +17,8 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable()->default(now());
+            $table->dateTime('updated_at')->nullable()->default(now());
         });
     }
 

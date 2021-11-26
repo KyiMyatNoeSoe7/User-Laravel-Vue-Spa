@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
     <h1 class="text-bold">About Page</h1>
     <p class="mt-3">
       It is a long established fact that a reader will be distracted by the

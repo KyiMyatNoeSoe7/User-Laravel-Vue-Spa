@@ -93,7 +93,7 @@
                 </button>
                 <router-link
                   :to="{ name: 'postdetail', params: { id: post.id } }"
-                  class="btn btn-success ml-2"
+                  class="btn btn-success btn-sm ml-2"
                   type="submit"
                   >Post Detail</router-link
                 >
@@ -188,7 +188,7 @@ export default {
       const data = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", data);
-      link.setAttribute("download", "export.csv");
+      link.setAttribute("download", "post-export.csv");
       link.click();
     },
     handleFileUpload(event) {
@@ -211,8 +211,9 @@ export default {
   },
   computed: {
     csvData() {
+      console.log(this.posts);
       return this.posts.map((post) => ({
-        ...post,
+        id: post.id,
         name: post.name,
         description: post.description,
       }));

@@ -17,7 +17,8 @@ class CreateContactsTable extends Migration
             $table->bigIncrements('id');
             $table->string('email');
             $table->string('message')->nullable();
-            $table->timestamps();
+            $table->dateTime('created_at')->nullable()->default(now());
+            $table->dateTime('updated_at')->nullable()->default(now());
         });
     }
 

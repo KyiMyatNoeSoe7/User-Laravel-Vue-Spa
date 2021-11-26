@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {   
@@ -16,8 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {   
-        $posts = Post::all();
-        return $posts;      
+        Log::info("index");
+        Log::info(Carbon::now());
+        Log::info(Carbon::now()->format("Y-m-d H:i:s"));
+
+        return Post::get();
     }
     /**
      * Store a newly created resource in storage.
@@ -28,9 +33,10 @@ class PostController extends Controller
     public function store(Request $request)
     {   
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:posts,name',
             'description' => 'required',
-        ]);
+        ]); 
+        
         $post = new Post;
         $post->name = $request->name;
         $post->description = $request->description;
@@ -58,7 +64,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) 
-    {
+    {   
         $post = Post::findOrFail($id);
         $post->name = $request->name;
         $post->description = $request->description;
@@ -108,10 +114,12 @@ class PostController extends Controller
                       }
                       $i++;
                   }
-                  foreach ($importData_arr as $key=>$importData) {
-                    if ($key == 1) {
+         
+               foreach ($importData_arr as $key=>$importData) {
+                    if ($key == 1) {     
                         continue;
                     }
+                   
                     $insertData = array(
                         "name"=>$importData[1],
                         "description"=>$importData[2]);
@@ -121,4 +129,3 @@ class PostController extends Controller
             fclose ( $handle );
     }
 }
-

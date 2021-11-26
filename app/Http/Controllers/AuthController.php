@@ -24,12 +24,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = User::create([
+
             'name' => $request['name'],
             'password' => Hash::make($request['password']),
             'email' => $request['email'],
             'role_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
-        $user->save();
         return $user;
     }
     /**

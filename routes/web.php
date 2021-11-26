@@ -13,14 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('{any}', function () {
     return view('welcome');
 })->where('any', '.*');
 
-// Route::middleware('auth:sanctum')->get('user', function () {
-//     return auth()->user();
-// });

@@ -1,32 +1,33 @@
 <template>
   <div class="container my-3">
-    <h1 class="text-bold">Admin</h1>
 
     <div class="row mt-1">
       <div class="col-md-6">
-        <h4 class="ml-2 text-primary">User-List</h4>
+        <h4 class="ml-2">User-List</h4>
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Role Id</th>
               <th>Password</th>
             </tr>
           </thead>
-          <tbody v-if="users.length > 0">
+          <tbody>
             <tr v-for="user in users" :key="user.id">
               <td>{{ user.id }}</td>
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user.password }}</td>
+              <td>{{ user.role_id }}</td>
+              <td>{{ '********' }}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="col-md-6">
-        <h4 class="ml-2 text-primary">Post List</h4>
+        <h4 class="ml-2">Post List</h4>
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
@@ -49,7 +50,7 @@
                 </button>
                 <router-link
                   :to="{ name: 'postdetail', params: { id: post.id } }"
-                  class="btn btn-success ml-2"
+                  class="btn btn-success btn-sm ml-2"
                   type="submit"
                   >Post Detail</router-link
                 >
