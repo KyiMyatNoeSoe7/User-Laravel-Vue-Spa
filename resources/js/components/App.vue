@@ -26,7 +26,7 @@
             <router-link
               class="nav-link font-weight-bold"
               :to="{ name: 'login' }"
-              v-if="!auth"
+              v-if="role_id == null"
               >Login
             </router-link>
           </li>
@@ -34,13 +34,13 @@
             <router-link
               class="nav-link font-weight-bold"
               :to="{ name: 'register' }"
-              v-if="!auth"
+              v-if="role_id == null"
               >Register
             </router-link>
           </li>
         </ul>
 
-        <ul class="navbar-nav nav-tabs" v-if="auth">
+        <ul class="navbar-nav nav-tabs" v-if="role_id != null && auth == true">
           <li class="nav-item">
             <router-link
               class="nav-link font-weight-bold"
@@ -50,7 +50,7 @@
           </li>
         </ul>
         {{ "role".role_id }}
-        <ul class="navbar-nav nav-tabs" v-if="role_id == 1">
+        <ul class="navbar-nav nav-tabs" v-if="role_id == 1 && auth == true">
           <li class="nav-item">
             <router-link
               class="nav-link font-weight-bold"
@@ -77,7 +77,10 @@
           </li>
         </ul>
 
-        <ul class="navbar-nav nav-tabs justify-content-end" v-if="auth">
+        <ul
+          class="navbar-nav nav-tabs justify-content-end"
+          v-if="role_id != null && auth == true"
+        >
           <li class="nav-item">
             <router-link
               class="nav-link font-weight-bold"
@@ -87,11 +90,7 @@
           </li>
           <li class="nav-item">
             <form @submit.prevent="logout">
-              <button
-                class="btn btn-sm btn-secondary mt-2"
-                type="submit"
-                v-if="auth"
-              >
+              <button class="btn btn-sm btn-secondary mt-2" type="submit">
                 Logout
               </button>
             </form>
@@ -161,13 +160,14 @@ export default {
         this.name = response.data.name;
         this.role_id = response.data.role_id;
         this.auth = true;
+        localStorage.setItem("auth", this.auth);
       });
     },
     logout() {
       axios.post("/api/logout").then(() => {
-        this.$router.push("/");
         this.auth = false;
         localStorage.clear();
+        this.$router.push("/login");
       });
     },
   },

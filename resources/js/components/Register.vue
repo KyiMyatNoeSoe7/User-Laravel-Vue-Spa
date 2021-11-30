@@ -26,22 +26,51 @@
               </div>
               <div class="form-group">
                 <label>Password:</label>
-                <input
-                  :type="type"
-                  class="form-control"
-                  v-model="user.password"
-                  placeholder="Enter your password"
-                />
+                <div class="input-group">
+                  <input
+                    :type="[showPassword ? 'text' : 'password']"
+                    class="form-control"
+                    v-model="user.password"
+                    placeholder="Enter your password"
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text"
+                      @click="showPassword = !showPassword"
+                      ><i
+                        class="fa"
+                        :class="[showPassword ? 'fa-eye' : 'fa-eye-slash']"
+                        aria-hidden="true"
+                      ></i
+                    ></span>
+                  </div>
+                </div>
               </div>
               <div class="form-group">
                 <label>Confirm Password:</label>
-                <input
-                  :type="type"
-                  class="form-control"
-                  v-model="user.password_confirm"
-                  placeholder="Enter your password"
-                  @click.right.prevent @keydown="keydown" @copy.prevent @paste.prevent
-                />
+                <div class="input-group">
+                  <input
+                    :type="[showPassword ? 'text' : 'password']"
+                    class="form-control"
+                    v-model="user.password_confirm"
+                    placeholder="Enter your password"
+                    @click.right.prevent
+                    @keydown="keydown"
+                    @copy.prevent
+                    @paste.prevent
+                  />
+                  <div class="input-group-append">
+                    <span
+                      class="input-group-text"
+                      @click="showPassword = !showPassword"
+                      ><i
+                        class="fa"
+                        :class="[showPassword ? 'fa-eye' : 'fa-eye-slash']"
+                        aria-hidden="true"
+                      ></i
+                    ></span>
+                  </div>
+                </div>
               </div>
               <button type="submit" class="btn btn-primary btn-block">
                 Register
@@ -74,8 +103,7 @@ export default {
         password_confrim: "",
         role_id: 2,
       },
-      type: 'password',
-      
+      showPassword: false,
     };
   },
 
@@ -93,10 +121,9 @@ export default {
         })
         .catch((error) => console.log(error));
     },
-    keydown: function(e) {
-      console.log(e)
+    keydown: function (e) {
+      console.log(e);
     },
-  }
-    
+  },
 };
 </script>

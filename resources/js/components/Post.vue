@@ -1,9 +1,9 @@
 <template>
   <div class="container my-5">
     <h3>Post List</h3>
-    <div class="row justify-content-start ml-1 mt-3 mb-5">
-      <button class="btn btn-primary mr-5" @click="create">Add Post</button>
-      <div class="mr-5">
+    <div class="row justify-content-between ml-1 mt-3 mb-5">
+      <button class="btn btn-primary" @click="create">Add Post</button>
+      <div class="">
         <input
           class="border border-primary"
           type="file"
@@ -11,12 +11,12 @@
         />
         <button class="btn btn-primary nl-5" @click="submitFile">Upload</button>
       </div>
-      <div class="mr-5">
+      <div class="">
         <button class="btn btn-primary" @click="csvExport(csvData)">
           Export to CSV
         </button>
       </div>
-      <div class="ml-5">
+      <div class="mr-3">
         <form @submit.prevent="searchPost">
           <div class="input-group">
             <input
@@ -27,7 +27,7 @@
             />
             <div class="input-group-append">
               <button type="submit" class="btn btn-primary">
-                <i class="fas fa-search"></i>
+                <i class="fa fa-search"></i>
               </button>
             </div>
           </div>

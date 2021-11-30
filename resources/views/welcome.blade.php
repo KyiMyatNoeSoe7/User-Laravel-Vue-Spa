@@ -27,6 +27,7 @@
             
         </div>
         <script src="{{ mix('js/app.js') }}" type="text/javascript"></script>
+        <script src='https://use.fontawesome.com/b9bdbd120a.js'></script>
 
            
     </body>

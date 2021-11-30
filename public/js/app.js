@@ -2365,7 +2365,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2385,16 +2384,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.name = response.data.name;
         _this.role_id = response.data.role_id;
         _this.auth = true;
+        localStorage.setItem("auth", _this.auth);
       });
     },
     logout: function logout() {
       var _this2 = this;
 
       axios.post("/api/logout").then(function () {
-        _this2.$router.push("/");
-
         _this2.auth = false;
         localStorage.clear();
+
+        _this2.$router.push("/login");
       });
     }
   },
@@ -2665,6 +2665,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2672,7 +2685,7 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         password: ""
       },
-      type: 'password'
+      showPassword: false
     };
   },
   methods: {
@@ -2680,7 +2693,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("/api/login", this.user).then(function () {
-        _this.$router.push("/post");
+        _this.$router.push({
+          name: "home"
+        });
       });
       localStorage.setItem("email", this.user.email);
     }
@@ -3165,6 +3180,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3176,7 +3220,7 @@ __webpack_require__.r(__webpack_exports__);
         password_confrim: "",
         role_id: 2
       },
-      type: 'password'
+      showPassword: false
     };
   },
   methods: {
@@ -39843,7 +39887,7 @@ var render = function() {
                   "li",
                   { staticClass: "nav-item" },
                   [
-                    !_vm.auth
+                    _vm.role_id == null
                       ? _c(
                           "router-link",
                           {
@@ -39861,7 +39905,7 @@ var render = function() {
                   "li",
                   { staticClass: "nav-item" },
                   [
-                    !_vm.auth
+                    _vm.role_id == null
                       ? _c(
                           "router-link",
                           {
@@ -39876,7 +39920,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm.auth
+              _vm.role_id != null && _vm.auth == true
                 ? _c("ul", { staticClass: "navbar-nav nav-tabs" }, [
                     _c(
                       "li",
@@ -39896,7 +39940,7 @@ var render = function() {
                   ])
                 : _vm._e(),
               _vm._v("\n      " + _vm._s("role".role_id) + "\n      "),
-              _vm.role_id == 1
+              _vm.role_id == 1 && _vm.auth == true
                 ? _c("ul", { staticClass: "navbar-nav nav-tabs" }, [
                     _c(
                       "li",
@@ -39957,7 +40001,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm.auth
+              _vm.role_id != null && _vm.auth == true
                 ? _c(
                     "ul",
                     { staticClass: "navbar-nav nav-tabs justify-content-end" },
@@ -39990,21 +40034,14 @@ var render = function() {
                             }
                           },
                           [
-                            _vm.auth
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "btn btn-sm btn-secondary mt-2",
-                                    attrs: { type: "submit" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n              Logout\n            "
-                                    )
-                                  ]
-                                )
-                              : _vm._e()
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-secondary mt-2",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("\n              Logout\n            ")]
+                            )
                           ]
                         )
                       ])
@@ -40455,101 +40492,63 @@ var render = function() {
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Password:")]),
                   _vm._v(" "),
-                  _vm.type === "checkbox"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: "checkbox"
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.user.password)
-                            ? _vm._i(_vm.user.password, null) > -1
-                            : _vm.user.password
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.user.password,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.user,
-                                    "password",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.user,
-                                    "password",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
+                  _c("div", { staticClass: "input-group" }, [
+                    [_vm.showPassword ? "text" : "password"] === "checkbox"
+                      ? 0
+                      : [_vm.showPassword ? "text" : "password"] === "radio"
+                      ? 0
+                      : _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.password,
+                              expression: "user.password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Enter your password",
+                            type: [_vm.showPassword ? "text" : "password"]
+                          },
+                          domProps: { value: _vm.user.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            } else {
-                              _vm.$set(_vm.user, "password", $$c)
+                              _vm.$set(
+                                _vm.user,
+                                "password",
+                                $event.target.value
+                              )
                             }
                           }
-                        }
-                      })
-                    : _vm.type === "radio"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: "radio"
-                        },
-                        domProps: { checked: _vm._q(_vm.user.password, null) },
-                        on: {
-                          change: function($event) {
-                            return _vm.$set(_vm.user, "password", null)
-                          }
-                        }
-                      })
-                    : _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: _vm.type
-                        },
-                        domProps: { value: _vm.user.password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-append" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "input-group-text",
+                          on: {
+                            click: function($event) {
+                              _vm.showPassword = !_vm.showPassword
                             }
-                            _vm.$set(_vm.user, "password", $event.target.value)
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa",
+                            class: [
+                              _vm.showPassword ? "fa-eye" : "fa-eye-slash"
+                            ],
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
@@ -40610,14 +40609,14 @@ var render = function() {
   return _c("div", { staticClass: "container my-5" }, [
     _c("h3", [_vm._v("Post List")]),
     _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-start ml-1 mt-3 mb-5" }, [
+    _c("div", { staticClass: "row justify-content-between ml-1 mt-3 mb-5" }, [
       _c(
         "button",
-        { staticClass: "btn btn-primary mr-5", on: { click: _vm.create } },
+        { staticClass: "btn btn-primary", on: { click: _vm.create } },
         [_vm._v("Add Post")]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "mr-5" }, [
+      _c("div", {}, [
         _c("input", {
           staticClass: "border border-primary",
           attrs: { type: "file" },
@@ -40638,7 +40637,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "mr-5" }, [
+      _c("div", {}, [
         _c(
           "button",
           {
@@ -40653,7 +40652,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "ml-5" }, [
+      _c("div", { staticClass: "mr-3" }, [
         _c(
           "form",
           {
@@ -40862,7 +40861,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-        [_c("i", { staticClass: "fas fa-search" })]
+        [_c("i", { staticClass: "fa fa-search" })]
       )
     ])
   },
@@ -41120,237 +41119,135 @@ var render = function() {
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Password:")]),
                   _vm._v(" "),
-                  _vm.type === "checkbox"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: "checkbox"
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.user.password)
-                            ? _vm._i(_vm.user.password, null) > -1
-                            : _vm.user.password
-                        },
-                        on: {
-                          change: function($event) {
-                            var $$a = _vm.user.password,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.user,
-                                    "password",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.user,
-                                    "password",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
+                  _c("div", { staticClass: "input-group" }, [
+                    [_vm.showPassword ? "text" : "password"] === "checkbox"
+                      ? 0
+                      : [_vm.showPassword ? "text" : "password"] === "radio"
+                      ? 0
+                      : _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.password,
+                              expression: "user.password"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Enter your password",
+                            type: [_vm.showPassword ? "text" : "password"]
+                          },
+                          domProps: { value: _vm.user.password },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            } else {
-                              _vm.$set(_vm.user, "password", $$c)
+                              _vm.$set(
+                                _vm.user,
+                                "password",
+                                $event.target.value
+                              )
                             }
                           }
-                        }
-                      })
-                    : _vm.type === "radio"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: "radio"
-                        },
-                        domProps: { checked: _vm._q(_vm.user.password, null) },
-                        on: {
-                          change: function($event) {
-                            return _vm.$set(_vm.user, "password", null)
-                          }
-                        }
-                      })
-                    : _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: _vm.type
-                        },
-                        domProps: { value: _vm.user.password },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-append" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "input-group-text",
+                          on: {
+                            click: function($event) {
+                              _vm.showPassword = !_vm.showPassword
                             }
-                            _vm.$set(_vm.user, "password", $event.target.value)
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa",
+                            class: [
+                              _vm.showPassword ? "fa-eye" : "fa-eye-slash"
+                            ],
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Confirm Password:")]),
                   _vm._v(" "),
-                  _vm.type === "checkbox"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password_confirm,
-                            expression: "user.password_confirm"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: "checkbox"
-                        },
-                        domProps: {
-                          checked: Array.isArray(_vm.user.password_confirm)
-                            ? _vm._i(_vm.user.password_confirm, null) > -1
-                            : _vm.user.password_confirm
-                        },
-                        on: {
-                          contextmenu: function($event) {
-                            $event.preventDefault()
+                  _c("div", { staticClass: "input-group" }, [
+                    [_vm.showPassword ? "text" : "password"] === "checkbox"
+                      ? 0
+                      : [_vm.showPassword ? "text" : "password"] === "radio"
+                      ? 0
+                      : _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.user.password_confirm,
+                              expression: "user.password_confirm"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            placeholder: "Enter your password",
+                            type: [_vm.showPassword ? "text" : "password"]
                           },
-                          keydown: _vm.keydown,
-                          copy: function($event) {
-                            $event.preventDefault()
-                          },
-                          paste: function($event) {
-                            $event.preventDefault()
-                          },
-                          change: function($event) {
-                            var $$a = _vm.user.password_confirm,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.user,
-                                    "password_confirm",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.user,
-                                    "password_confirm",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
+                          domProps: { value: _vm.user.password_confirm },
+                          on: {
+                            contextmenu: function($event) {
+                              $event.preventDefault()
+                            },
+                            keydown: _vm.keydown,
+                            copy: function($event) {
+                              $event.preventDefault()
+                            },
+                            paste: function($event) {
+                              $event.preventDefault()
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            } else {
-                              _vm.$set(_vm.user, "password_confirm", $$c)
+                              _vm.$set(
+                                _vm.user,
+                                "password_confirm",
+                                $event.target.value
+                              )
                             }
                           }
-                        }
-                      })
-                    : _vm.type === "radio"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password_confirm,
-                            expression: "user.password_confirm"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: "radio"
-                        },
-                        domProps: {
-                          checked: _vm._q(_vm.user.password_confirm, null)
-                        },
-                        on: {
-                          contextmenu: function($event) {
-                            $event.preventDefault()
-                          },
-                          keydown: _vm.keydown,
-                          copy: function($event) {
-                            $event.preventDefault()
-                          },
-                          paste: function($event) {
-                            $event.preventDefault()
-                          },
-                          change: function($event) {
-                            return _vm.$set(_vm.user, "password_confirm", null)
-                          }
-                        }
-                      })
-                    : _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.user.password_confirm,
-                            expression: "user.password_confirm"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "Enter your password",
-                          type: _vm.type
-                        },
-                        domProps: { value: _vm.user.password_confirm },
-                        on: {
-                          contextmenu: function($event) {
-                            $event.preventDefault()
-                          },
-                          keydown: _vm.keydown,
-                          copy: function($event) {
-                            $event.preventDefault()
-                          },
-                          paste: function($event) {
-                            $event.preventDefault()
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                        }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "input-group-append" }, [
+                      _c(
+                        "span",
+                        {
+                          staticClass: "input-group-text",
+                          on: {
+                            click: function($event) {
+                              _vm.showPassword = !_vm.showPassword
                             }
-                            _vm.$set(
-                              _vm.user,
-                              "password_confirm",
-                              $event.target.value
-                            )
                           }
-                        }
-                      })
+                        },
+                        [
+                          _c("i", {
+                            staticClass: "fa",
+                            class: [
+                              _vm.showPassword ? "fa-eye" : "fa-eye-slash"
+                            ],
+                            attrs: { "aria-hidden": "true" }
+                          })
+                        ]
+                      )
+                    ])
+                  ])
                 ]),
                 _vm._v(" "),
                 _c(
