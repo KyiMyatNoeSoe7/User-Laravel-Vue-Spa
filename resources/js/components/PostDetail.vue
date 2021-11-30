@@ -11,7 +11,8 @@
                   <span class="text-primary">Name: </span>{{ post.name }}
                 </li>
                 <li class="list-group-item py-4">
-                  <span class="text-primary">Description: </span>{{ post.description }}
+                  <span class="text-primary">Description: </span
+                  >{{ post.description }}
                 </li>
               </ul>
             </div>
@@ -32,11 +33,14 @@
 
 <script>
 export default {
-  name: "PostDetail",
+  name: "postDetail",
   data() {
     return {
       post: [],
     };
+  },
+  created() {
+    this.getPost();
   },
   methods: {
     getPost() {
@@ -47,9 +51,6 @@ export default {
         })
         .catch((error) => console.log(error));
     },
-  },
-  created() {
-    this.getPost();
   },
 };
 </script>

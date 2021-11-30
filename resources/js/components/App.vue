@@ -71,7 +71,7 @@
           <li class="nav-item">
             <router-link
               class="nav-link font-weight-bold"
-              :to="{ name: 'contactus' }"
+              :to="{ name: 'contactUs' }"
               >Contact Us
             </router-link>
           </li>
@@ -115,7 +115,7 @@
                 </router-link>
               </li>
               <li>
-                <router-link class="nav-link" :to="{ name: 'contactus' }"
+                <router-link class="nav-link" :to="{ name: 'contactUs' }"
                   >Contact Us
                 </router-link>
               </li>
@@ -154,6 +154,10 @@ export default {
       currentUser: null,
     };
   },
+  created() {
+    this.currentUser = localStorage.getItem("email");
+    this.view();
+  },
   methods: {
     view() {
       axios.post("/api/users", { email: this.currentUser }).then((response) => {
@@ -170,10 +174,6 @@ export default {
         this.$router.push("/login");
       });
     },
-  },
-  created() {
-    this.currentUser = localStorage.getItem("email");
-    this.view();
   },
 };
 </script>

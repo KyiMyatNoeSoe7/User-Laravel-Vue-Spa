@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 class PostController extends Controller
 {   
     /**
@@ -16,12 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {   
-        Log::info("index");
-        Log::info(Carbon::now());
-        Log::info(Carbon::now()->format("Y-m-d H:i:s"));
-
         return Post::get();
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,6 +37,7 @@ class PostController extends Controller
         $post->save();
         return $post;
     }
+
     /**
      * Display the specified resource.
      *
@@ -54,6 +50,7 @@ class PostController extends Controller
         return $post;
 
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -70,6 +67,7 @@ class PostController extends Controller
         $post->update();
         return $post;
     }
+
      /**
      * Remove the specified resource from storage.
      *
@@ -83,6 +81,7 @@ class PostController extends Controller
 
         return $post;
     }
+
      /**
      * Display the specified resource.
      *

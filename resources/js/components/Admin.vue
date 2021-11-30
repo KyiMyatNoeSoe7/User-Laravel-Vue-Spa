@@ -48,7 +48,7 @@
                   Delete
                 </button>
                 <router-link
-                  :to="{ name: 'postdetail', params: { id: post.id } }"
+                  :to="{ name: 'postDetail', params: { id: post.id } }"
                   class="btn btn-success btn-sm ml-2"
                   type="submit"
                   >Post Detail</router-link
@@ -92,6 +92,8 @@ export default {
           let i = this.posts.map((data) => data.id).indexOf(id);
           this.posts.splice(i, 1);
         });
+      } else {
+        alert("Your delete api is fail!!! ");
       }
     },
     view() {

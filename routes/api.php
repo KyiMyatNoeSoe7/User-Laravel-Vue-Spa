@@ -24,9 +24,3 @@ Route::post('/mail', [ContactController::class, 'mail']);
 
 Route::post('/store', [ContactController::class, 'store']);
 Route::apiResource('contact',ContactController::class);
-
-
-Route::group(['middleware' => 'admin'], function () {
-    //user
-    //contact
-});

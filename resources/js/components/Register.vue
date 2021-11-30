@@ -121,9 +121,7 @@ export default {
         })
         .catch((error) => console.log(error));
     },
-    keydown: function (e) {
-      console.log(e);
-    },
+    keydown: function (e) {},
   },
 };
 </script>

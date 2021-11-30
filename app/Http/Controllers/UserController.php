@@ -19,11 +19,6 @@ class UserController extends Controller
         return $users;      
     }
 
-    public function store(Request $request)
-    {   
-        
-        
-    }
     /**
      * Display the specified resource.
      *
@@ -35,6 +30,7 @@ class UserController extends Controller
         $userData = User::find($id);
         return response()->json($userData);
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -49,6 +45,7 @@ class UserController extends Controller
 
         return $user;
     }
+    
     /**
      * Remove the specified resource from storage.
      *

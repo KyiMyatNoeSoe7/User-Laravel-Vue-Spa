@@ -44,20 +44,14 @@
           <div class="card-body">
             <form @submit.prevent="doEdit ? update() : store()">
               <div class="form-group">
-                <label for="">Name</label>
-                <input
-                  v-model="post.name"
-                  type="text"
-                  class="form-control"
-                  id=""
-                />
+                <label>Name</label>
+                <input v-model="post.name" type="text" class="form-control" />
               </div>
               <div class="form-group">
-                <label for="">Description</label>
+                <label>Description</label>
                 <textarea
                   v-model="post.description"
                   class="form-control"
-                  id=""
                 ></textarea>
               </div>
               <button type="submit" class="btn btn-primary">
@@ -92,7 +86,7 @@
                   Delete
                 </button>
                 <router-link
-                  :to="{ name: 'postdetail', params: { id: post.id } }"
+                  :to="{ name: 'postDetail', params: { id: post.id } }"
                   class="btn btn-success btn-sm ml-2"
                   type="submit"
                   >Post Detail</router-link
@@ -120,6 +114,19 @@ export default {
         description: "",
       },
     };
+  },
+  created() {
+    this.view();
+  },
+  computed: {
+    csvData() {
+      console.log(this.posts);
+      return this.posts.map((post) => ({
+        id: post.id,
+        name: post.name,
+        description: post.description,
+      }));
+    },
   },
 
   methods: {
@@ -166,6 +173,8 @@ export default {
           let i = this.posts.map((data) => data.id).indexOf(id);
           this.posts.splice(i, 1);
         });
+      } else {
+        alert("Your delete api is fail!!! ");
       }
     },
     searchPost() {
@@ -208,20 +217,6 @@ export default {
           console.log(response);
         });
     },
-  },
-  computed: {
-    csvData() {
-      console.log(this.posts);
-      return this.posts.map((post) => ({
-        id: post.id,
-        name: post.name,
-        description: post.description,
-      }));
-    },
-  },
-
-  created() {
-    this.view();
   },
 };
 </script>

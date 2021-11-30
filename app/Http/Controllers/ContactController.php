@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Contact;
-use Illuminate\Support\Facades\Log;
-
 class ContactController extends Controller
 {   
     /**
@@ -19,6 +17,7 @@ class ContactController extends Controller
         $contacts = Contact::all();
         return $contacts;
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,6 +37,7 @@ class ContactController extends Controller
         $contact->save();
         return $contact;
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -51,6 +51,7 @@ class ContactController extends Controller
 
         return $contact;
     }
+
     /**
      * Display the specified resource.
      *
@@ -63,6 +64,7 @@ class ContactController extends Controller
         return $contact;
 
     }
+    
      /**
      * Create a new controller to send & receive email.
      *

@@ -5,23 +5,21 @@
         <div class="card mb-5">
           <div class="card-header text-center">Contact Us</div>
           <div class="card-body">
-            <form action="" @submit.prevent="contactEnter">
+            <form @submit.prevent="contactEnter">
               <div class="form-group">
-                <label for="">Email</label>
+                <label>Email</label>
                 <input
                   v-model="email"
                   type="text"
                   class="form-control"
-                  id=""
                   placeholder="Your Email"
                 />
               </div>
               <div class="form-group">
-                <label for="">Message</label>
+                <label>Message</label>
                 <textarea
                   v-model="message"
                   class="form-control"
-                  id=""
                   placeholder="Message"
                 ></textarea>
               </div>

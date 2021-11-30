@@ -12,6 +12,7 @@ class AuthController extends Controller
     {   
         return User::where('email', trim($request->email))->first();
     }
+
     /**
      * Create a new user instance
      *
@@ -31,6 +32,7 @@ class AuthController extends Controller
         ]);
         return $user;
     }
+
     /**
      * Create a new controller to login this system.
      *
@@ -53,6 +55,7 @@ class AuthController extends Controller
             'message' => $token
         ])->withCookie($cookie);
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -67,6 +70,7 @@ class AuthController extends Controller
             'message' => 'Success logout'
         ])->withCookie($cookie);
     }
+    
     /**
      * Create a new user profile controller.
      *

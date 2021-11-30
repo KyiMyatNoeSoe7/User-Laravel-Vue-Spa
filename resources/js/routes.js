@@ -37,13 +37,13 @@ export const routes = [
         component: Post,
     },
     {
-        name: 'contactus',
-        path: '/contactus',
+        name: 'contactUs',
+        path: '/contactUs',
         component: ContactUs,
     },
     {
-        name: 'postdetail',
-        path: '/postdetail',
+        name: 'postDetail',
+        path: '/postDetail',
         component: PostDetail,
     },
     {
