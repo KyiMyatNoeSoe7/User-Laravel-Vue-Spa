@@ -55,7 +55,7 @@ Admin can manage the users, posts. Admin part include `User Authentication` , `R
 ## User
 User can create, edit, update and delete posts. User part include `create posts`, `edit posts`, `delete posts`, `send contact message to admin`, `search posts`, `export and import posts in csv file`.
 
-![User View](img/user.png)
+![User View](img/post.png)
     
 ## Home Page
 
