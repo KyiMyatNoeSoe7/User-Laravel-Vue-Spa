@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5 mb-5 profile">
+  <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card">
@@ -21,7 +21,7 @@
             <router-link
               :to="{ name: 'post' }"
               class="btn btn-outline-secondary btn-sm mt-3"
-            >
+              ><i class="fa fa-arrow-circle-left mr-1"></i>
               Go Back
             </router-link>
           </div>

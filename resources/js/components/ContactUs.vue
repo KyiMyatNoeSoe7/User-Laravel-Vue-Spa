@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card mb-5">
@@ -27,9 +27,10 @@
                 Send Mail
               </button>
               <router-link
-                :to="{ name: 'post' }"
+                :to="{ name: 'home' }"
                 class="btn btn-outline-secondary ml-3"
-                >Cancel</router-link
+              >
+                <i class="fa fa-trash-o"></i>Cancel</router-link
               >
             </form>
           </div>
@@ -52,14 +53,13 @@ export default {
       axios
         .post("/api/store", { email: this.email, message: this.message })
         .then((response) => {
-          email = this.email;
+          this.email = "";
+          this.message = "";
         });
       axios
         .post("/api/mail", { email: this.email, message: this.message })
         .then((response) => {
-          email = this.email;
-          message = this.message;
-          console.log("Success");
+          alert("Your message have been sent!");
         });
     },
   },

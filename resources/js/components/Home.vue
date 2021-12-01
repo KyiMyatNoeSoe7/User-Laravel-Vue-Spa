@@ -2,18 +2,18 @@
   <div class="container mt-5 mb-5">
     <h1 class="text-bold">Home Page</h1>
     <p class="mt-3">
-      It is a long established fact that a reader will be distracted by the
-      readable content of a page <br />
-      when looking at its layout.The point of using Lorem Ipsum is that it has a
-      more-or-less normal <br />
-      distribution of letters,as opposed to using 'Content here, content here',
-      making it look like readable English.<br />
-      Many desktop publishing packages and web page editors now use Lorem Ipsum
-      as their default model text,<br />
-      and a search for 'lorem ipsum' will uncover many web sites still in their
-      infancy.<br />
-      Various versions have evolved over the years, sometimes by accident,
-      sometimes on purpose.
+      A Simple Item Create/Read/Update/Delete (CRUD) Application created <br />
+      using Laravel 8, Vue.js, Axios and bootstrap 4.6 with composer and <br />
+      npm package or dependency management.<br /><br />
+
+      Admin can manage the users, posts. Admin part include User Authentication
+      , <br />
+      Role and Permission between admin and user, send and receive email from
+      users,<br />
+      manage contact list.User can create, edit, update and delete posts. <br />
+      User part include create posts, edit posts, delete posts, <br />
+      send contact message to admin, search posts, export and import posts in
+      csv file.
     </p>
   </div>
 </template>

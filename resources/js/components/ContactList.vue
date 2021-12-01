@@ -21,6 +21,7 @@
                   class="btn btn-danger btn-sm ml-2"
                   @click="destroy(contact.id)"
                 >
+                  <i class="fa fa-trash-o"></i>
                   Delete
                 </button>
               </td>

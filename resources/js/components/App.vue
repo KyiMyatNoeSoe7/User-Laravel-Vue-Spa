@@ -88,10 +88,13 @@
               >Profile
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ml-1">
             <form @submit.prevent="logout">
-              <button class="btn btn-sm btn-secondary mt-2" type="submit">
-                Logout
+              <button
+                type="submit"
+                class="btn btn-sm btn-outline-secondary mt-1"
+              >
+                <i class="fa fa-power-off"></i> Logout
               </button>
             </form>
           </li>
@@ -101,48 +104,22 @@
 
     <router-view> </router-view>
 
-    <footer class="page-footer font-small" style="background-color: white">
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
-            <h6 class="font-weight-bold text-uppercase mt-3 mb-1">
-              User-Post-Vue
-            </h6>
-            <ul style="font-size: 15px" class="list-unstyled">
-              <li>
-                <router-link class="nav-link" :to="{ name: 'about' }"
-                  >About us
-                </router-link>
-              </li>
-              <li>
-                <router-link class="nav-link" :to="{ name: 'contactUs' }"
-                  >Contact Us
-                </router-link>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col">
-            <h6 class="font-weight-bold text-uppercase mt-3 mb-1">CONTACT</h6>
-            <ul class="list-unstyled" style="font-size: 15px">
-              <li>
-                <p>No.111,Botahtaung <span>Township,Yangon</span></p>
-              </li>
-              <li>
-                <p>superadmin@gmail.com</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div class="footer-copyright text-center py-2">
+    <div class="footer" style="background-color: white">
+      <div class="text-center py-2">
         © 2021 Copyright:
         <a href="#" class="">superadmin@gmail.com</a>
       </div>
-    </footer>
+    </div>
   </div>
 </template>
+<style>
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 83%;
+}
+</style>
+
 
 <script>
 export default {

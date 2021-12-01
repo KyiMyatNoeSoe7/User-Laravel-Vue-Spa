@@ -77,19 +77,20 @@
               <td>{{ post.description }}</td>
               <td>
                 <button class="btn btn-success btn-sm" @click="edit(post)">
-                  Edit
+                  <i class="fa fa-edit mr-1"></i>Edit
                 </button>
                 <button
                   class="btn btn-danger btn-sm ml-2"
                   @click="destroy(post.id)"
                 >
+                  <i class="fa fa-trash-o"></i>
                   Delete
                 </button>
                 <router-link
                   :to="{ name: 'postDetail', params: { id: post.id } }"
-                  class="btn btn-success btn-sm ml-2"
+                  class="btn btn-info btn-sm m-1"
                   type="submit"
-                  >Post Detail</router-link
+                  ><i class="fa fa-eye mr-1"></i>Post Detail</router-link
                 >
               </td>
             </tr>
