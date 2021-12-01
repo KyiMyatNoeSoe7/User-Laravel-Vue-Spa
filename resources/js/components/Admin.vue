@@ -38,8 +38,8 @@
           <tbody>
             <tr v-for="post in posts" :key="post.id">
               <td>{{ post.id }}</td>
-              <td>{{ post.name }}</td>
-              <td>{{ post.description }}</td>
+              <td class="post-width">{{ post.name }}</td>
+              <td class="post-width">{{ post.description }}</td>
               <td>
                 <button
                   class="btn btn-danger btn-sm ml-2"
@@ -62,7 +62,11 @@
     </div>
   </div>
 </template>
-
+<style>
+.post-width {
+  max-width: 135px;
+}
+</style>
 <script>
 export default {
   data() {
