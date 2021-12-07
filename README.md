@@ -47,15 +47,23 @@ Password : 12345678
 - [Post CRUD](#Post)
 
 ## Admin
-Admin can manage the users, posts. Admin part include `User Authentication` , `Role and Permission between admin and user`, `send and receive email from users`,`manage contact list`.
+Admin can manage the users, posts. Admin part include `Users create, edit and delete`, `User Authentication` , `Role and Permission between admin and user`, `send and receive email from users`,`manage contact list`.
 
-![Admin View](img/admin.png)
+![Admin View](img/admin1.png)
+
+## Admin Contact List 
 ![Admin View](img/admin_contact.png)
+## Admin User Edit 
+![Admin View](img/admin-edit.png)
 
 ## User
 User can create, edit, update and delete posts. User part include `create posts`, `edit posts`, `delete posts`, `send contact message to admin`, `search posts`, `export and import posts in csv file`.
 
 ![User View](img/user.png)
+
+## User Post Edit 
+![User View](img/user-edit.png)
+
     
 ## Home Page
 
@@ -82,4 +90,4 @@ User can create, edit, update and delete posts. User part include `create posts`
 
 ## Post Details
 
-![Contact](img/postDetail.png)
+![Contact](img/postDetail1.png)

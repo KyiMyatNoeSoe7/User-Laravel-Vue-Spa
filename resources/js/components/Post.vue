@@ -3,7 +3,7 @@
     <h3>Post List</h3>
     <div class="row justify-content-between ml-1 mt-3 mb-5">
       <button class="btn btn-primary" @click="create">Add Post</button>
-      <div class="">
+      <div>
         <input
           class="border border-primary"
           type="file"
@@ -11,7 +11,7 @@
         />
         <button class="btn btn-primary nl-5" @click="submitFile">Upload</button>
       </div>
-      <div class="">
+      <div>
         <button class="btn btn-primary" @click="csvExport(csvData)">
           Export to CSV
         </button>
@@ -38,22 +38,35 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header">
+          <div
+            class="card-header"
+            :class="[doEdit == true ? 'change' : 'no-change']"
+          >
             {{ doEdit ? "Edit" : "Create" }}
           </div>
           <div class="card-body">
             <form @submit.prevent="doEdit ? update() : store()">
               <div class="form-group">
                 <label>Name</label>
-                <input v-model="post.name" type="text" class="form-control" />
+                <input
+                  v-model="post.name"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+                <small>{{ error }} </small>
               </div>
+
               <div class="form-group">
                 <label>Description</label>
                 <textarea
                   v-model="post.description"
                   class="form-control"
+                  required
                 ></textarea>
+                <small>{{ error }} </small>
               </div>
+
               <button type="submit" class="btn btn-primary">
                 {{ doEdit ? "Update" : "Create" }}
               </button>
@@ -73,8 +86,8 @@
           <tbody>
             <tr v-for="post in posts" :key="post.id">
               <td>{{ post.id }}</td>
-              <td>{{ post.name }}</td>
-              <td>{{ post.description }}</td>
+              <td class="post-width">{{ post.name }}</td>
+              <td class="post-width">{{ post.description }}</td>
               <td>
                 <button class="btn btn-success btn-sm" @click="edit(post)">
                   <i class="fa fa-edit mr-1"></i>Edit
@@ -86,20 +99,81 @@
                   <i class="fa fa-trash-o"></i>
                   Delete
                 </button>
-                <router-link
-                  :to="{ name: 'postDetail', params: { id: post.id } }"
+
+                <button
+                  type="button"
                   class="btn btn-info btn-sm m-1"
-                  type="submit"
-                  ><i class="fa fa-eye mr-1"></i>Post Detail</router-link
+                  @click="detail(post)"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
                 >
+                  <i class="fa fa-eye mr-1"></i>Post Detail
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Post Details</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item py-4">
+                <span class="text-primary">Name: </span>{{ post.name }}
+              </li>
+              <li class="list-group-item py-4">
+                <span class="text-primary">Description: </span
+                >{{ post.description }}
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              data-dismiss="modal"
+            >
+              <i class="fa fa-arrow-circle-left mr-1"></i>Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+<style>
+.post-width {
+  max-width: 135px;
+}
+.change {
+  background-color: #4aa0e6;
+  color: white;
+}
+.no-change {
+  background-color: #ebedef;
+}
+</style>
 
 <script>
 export default {
@@ -108,6 +182,7 @@ export default {
       doEdit: false,
       search: "",
       file: "",
+      error: "",
       posts: {},
       post: {
         id: "",
@@ -129,7 +204,6 @@ export default {
       }));
     },
   },
-
   methods: {
     view() {
       axios.get("/api/post").then((response) => {
@@ -167,6 +241,10 @@ export default {
         this.post.description = "";
         this.doEdit = false;
       });
+    },
+    detail(post) {
+      this.post.name = post.name;
+      this.post.description = post.description;
     },
     destroy(id) {
       if (confirm("Are you sure to delete this post ?")) {

@@ -13,16 +13,20 @@
                   class="form-control"
                   v-model="user.name"
                   placeholder="Enter your name"
+                  required
                 />
+                <small>{{ error_name }} </small>
               </div>
               <div class="form-group">
                 <label>Email:</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   v-model="user.email"
                   placeholder="Enter your email"
+                  required
                 />
+                <small>{{ error_email }} </small>
               </div>
               <div class="form-group">
                 <label>Password:</label>
@@ -32,6 +36,7 @@
                     class="form-control"
                     v-model="user.password"
                     placeholder="Enter your password"
+                    required
                   />
                   <div class="input-group-append">
                     <span
@@ -44,6 +49,7 @@
                       ></i
                     ></span>
                   </div>
+                  <small>{{ error_password }} </small>
                 </div>
               </div>
               <div class="form-group">
@@ -58,6 +64,7 @@
                     @keydown="keydown"
                     @copy.prevent
                     @paste.prevent
+                    required
                   />
                   <div class="input-group-append">
                     <span
@@ -104,9 +111,11 @@ export default {
         role_id: 2,
       },
       showPassword: false,
+      error_email: "",
+      error_password: "",
+      error_name: "",
     };
   },
-
   methods: {
     store() {
       if (this.password !== this.password_confirmation) {
@@ -119,7 +128,13 @@ export default {
         .then(() => {
           this.$router.push("/login");
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.error(error);
+
+          this.error_password = error.response.data.error.password;
+          this.error_email = error.response.data.error.email;
+          this.error_name = error.response.data.error.name;
+        });
     },
     keydown: function (e) {},
   },

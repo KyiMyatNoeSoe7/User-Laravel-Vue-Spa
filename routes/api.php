@@ -11,6 +11,7 @@ Route::post('/login',[AuthController::class, 'login']);
 
 Route::apiResource('user',UserController::class);
 Route::post('users', [AuthController::class, 'index']);
+Route::post('/showUser', [UserController::class, 'showUser']);
 
 Route::apiResource('post',PostController::class);
 Route::post('/showPost', [PostController::class, 'showPost']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
+use App\Http\Requests\UserStoreRequest;
 class AuthController extends Controller
 {   
     public function index(Request $request)
@@ -19,7 +20,7 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    public function register(Request $request)
+    public function register(UserStoreRequest $request)
     {
         $user = User::create([
 

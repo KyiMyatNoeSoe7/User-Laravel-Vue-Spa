@@ -65,7 +65,6 @@ export default {
       showPassword: false,
     };
   },
-
   methods: {
     loginEnter() {
       axios.post("/api/login", this.user).then(() => {

@@ -60,6 +60,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id) 
     {   
+        $request->validate([
+            'name' => 'required|unique:posts,name',
+            'description' => 'required',
+        ]);   
         $post = Post::findOrFail($id);
         $post->name = $request->name;
         $post->description = $request->description;

@@ -57,4 +57,15 @@ class UserController extends Controller
         $user->delete();
         return response()->json('User deleted!');
     }
+    public function showUser(Request $request)
+    {   
+        $users = User::query();
+        if($request->keyword) {
+            return $users->where('name', 'like', "%" . $request->keyword . "%")
+           ->paginate(5);
+        } else {
+            return $users->all()->get()->paginate(5);
+        }
+
+    }
 }
