@@ -264,6 +264,7 @@ export default {
         })
         .then((response) => {
           this.posts = response.data.data;
+          this.search = "";
         });
     },
     csvExport(arrData) {

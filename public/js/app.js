@@ -3175,6 +3175,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         keyword: this.search
       }).then(function (response) {
         _this5.posts = response.data.data;
+        _this5.search = "";
       });
     },
     csvExport: function csvExport(arrData) {
